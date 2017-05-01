@@ -85,19 +85,19 @@ coord2 = numpy.dot(coord.transpose(), coord)
 numpy.fill_diagonal(coord2, coord2.diagonal() - coord2.trace())
 inertia = -coord2
 e_values, e_vectors = numpy.linalg.eig(inertia)
-# warning eigen values are not necessary ordered!
+# warning eigenvalues are not necessary ordered!
 # http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.eig.html
-print("(Unordered) eigen values:")
+print("(Unordered) eigenvalues:")
 print(e_values)
-print("(Unordered) eigen vectors:")
+print("(Unordered) eigenvectors:")
 print(e_vectors)
 
 #--------------------------------------------------------------------------
-# order eigen values (and eigen vectors)
+# order eigenvalues (and eigenvectors)
 #
-# axis1 is the principal axis with the biggest eigen value (eval1)
-# axis2 is the principal axis with the second biggest eigen value (eval2)
-# axis3 is the principal axis with the smallest eigen value (eval3)
+# axis1 is the principal axis with the biggest eigenvalue (eval1)
+# axis2 is the principal axis with the second biggest eigenvalue (eval2)
+# axis3 is the principal axis with the smallest eigenvalue (eval3)
 #--------------------------------------------------------------------------
 order = numpy.argsort(e_values)
 eval3, eval2, eval1 = e_values[order]
@@ -107,7 +107,7 @@ print("Inertia axis are now ordered !")
 
 #--------------------------------------------------------------------------
 # center axes to the geometric center of the molecule
-# and rescale them by order of eigen values
+# and rescale them by order of eigenvalues
 #--------------------------------------------------------------------------
 # the large vector is the first principal axis
 point1 = 3 * scale_factor * axis1 + center
@@ -157,15 +157,15 @@ with open(pymol_name, "w") as pymol_file:
 #--------------------------------------------------------------------------
 print("\nThe first principal axis is in red")
 print("coordinates: ", axis1)
-print("eigen value: ", eval1)
+print("eigenvalue: ", eval1)
 
 print("\nThe second principal axis is in green")
 print("coordinates:", axis2)
-print("eigen value:", eval2)
+print("eigenvalue:", eval2)
 
 print("\nThe third principal axis is in blue")
 print("coordinates:", axis3)
-print("eigen value:", eval3)
+print("eigenvalue:", eval3)
 
 print("\nYou can view principal axes with PyMOL:")
 print("pymol %s %s" %(pymol_name, pdb_name))
