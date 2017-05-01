@@ -82,7 +82,7 @@ coord = coord - center
 
 # compute principal axis matrix
 coord2 = numpy.dot(coord.transpose(), coord)
-numpy.fill_diagonal(coord2, coord2.diagonal() - cood2.trace())
+numpy.fill_diagonal(coord2, coord2.diagonal() - coord2.trace())
 inertia = -coord2
 e_values, e_vectors = numpy.linalg.eig(inertia)
 # warning eigen values are not necessary ordered!
